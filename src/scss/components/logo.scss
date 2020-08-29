@@ -1,0 +1,14 @@
+@import "../mixins/gridAreaAndPositions.scss";
+@import "../mixins/dropShadow.scss";
+@import "../constants/variables.scss";
+
+.logo-container {
+  @include gridAreaAndPositions(logo, center, center);
+  @include dropShadow(0px, -2px, 7px, 3px, #000000e0);
+  background-color: $color-default;
+
+  > img {
+    max-height: calc(0.85vh + 2.275em);
+    padding: 0.25rem 0;
+  }
+}

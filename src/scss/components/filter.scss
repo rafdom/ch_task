@@ -1,0 +1,100 @@
+@import "../mixins/gridAreaAndPositions.scss";
+@import "../constants/variables.scss";
+
+.filter-container {
+  @include gridAreaAndPositions(filter, center, center);
+  grid-template-columns: repeat(5, 2fr);
+  grid-template-areas: "... filterName select resetFilter ...";
+  gap: 0 0.5rem;
+  margin: 1rem 0;
+  font-size: $font-M;
+  font-weight: $weight-bold;
+  color: $color-default;
+
+  .select-label {
+    grid-area: filterName;
+    justify-self: flex-end;
+  }
+
+  > select {
+    grid-area: select;
+    width: 15.375rem;
+    height: 2.5rem;
+    padding-left: 0.5rem;
+    font-size: $font-M;
+    color: $color-default;
+    border: 2px solid $color-tertiary;
+    border-radius: $border-radius;
+    background: url(../../assets/drop-down-arrow.svg) no-repeat;
+    background-position: 130% 50%;
+    background-size: 50% 50%;
+    background-color: rgb(255, 255, 255);
+    transition: border $delay ease-out;
+
+    // remove default drop down arrow of select tag
+    -moz-appearance: none; /* Firefox */
+    -webkit-appearance: none; /* Safari and Chrome */
+    appearance: none;
+
+    &:hover {
+      border: 2px solid $color-default;
+      transition: border $delay ease-in;
+    }
+  }
+
+  > img {
+    grid-area: dropDownArrow;
+    position: absolute;
+    height: 1.5rem;
+    width: 1rem;
+    transform: translateX(6rem);
+  }
+
+  .hidden {
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  .reset-filter {
+    grid-area: resetFilter;
+    justify-self: flex-start;
+    width: 10rem;
+    height: 2.5rem;
+    border-radius: $border-radius;
+    text-align: center;
+    background-color: $color-default;
+    color: $color-neutral;
+    cursor: pointer;
+    transition: opacity $delay + 100ms ease-in, background-color $delay ease-out;
+
+    &:hover {
+      background-color: $color-secondary;
+      transition: background-color $delay ease-in;
+    }
+
+    > :nth-child(1) {
+      font-size: $font-L;
+      font-weight: $weight-default;
+      position: absolute;
+      transform: translate(-4rem, 0.2rem);
+    }
+    > :nth-child(2) {
+      font-size: $font-M;
+      position: absolute;
+      transform: translate(-2.2rem, 0.5rem);
+    }
+  }
+
+  @media only screen and (max-width: 800px) {
+    grid-template-columns: 1fr repeat(2, 4fr) 1fr;
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-areas:
+      "... filterName select ..."
+      "... resetFilter resetFilter ...";
+    gap: 1rem 0.5rem;
+
+    .reset-filter {
+      justify-self: center;
+    }
+  }
+}

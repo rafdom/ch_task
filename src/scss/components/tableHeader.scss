@@ -1,0 +1,22 @@
+@import "../mixins/gridAreaAndPositions.scss";
+@import "../mixins/dropShadow.scss";
+@import "../constants/variables.scss";
+
+.header-container {
+  @include gridAreaAndPositions(header, center, center);
+  @include dropShadow(0px, 3px, 5px, 1px, #0000004d);
+  grid-template-columns: repeat(4, 1fr);
+  background-color: $color-default;
+  border-top-left-radius: $border-radius;
+  border-top-right-radius: $border-radius;
+
+  * {
+    font-size: $font-M;
+    font-weight: $weight-bold;
+    color: $color-neutral;
+  }
+
+  @media only screen and (max-width: 800px) {
+    display: none;
+  }
+}

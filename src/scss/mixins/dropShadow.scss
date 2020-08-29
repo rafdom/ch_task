@@ -1,0 +1,5 @@
+@mixin dropShadow($vertical, $horizontal, $blurRadius, $spreadRadius, $color) {
+  -webkit-box-shadow: $vertical $horizontal $blurRadius $spreadRadius $color;
+  -moz-box-shadow: $vertical $horizontal $blurRadius $spreadRadius $color;
+  box-shadow: $vertical $horizontal $blurRadius $spreadRadius $color;
+}

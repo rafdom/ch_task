@@ -1,0 +1,6 @@
+@mixin gridAreaAndPositions($location, $justifyPosition, $alignPosition) {
+  grid-area: $location;
+  display: grid;
+  justify-items: $justifyPosition;
+  align-items: $alignPosition;
+}

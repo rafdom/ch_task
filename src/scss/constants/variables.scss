@@ -1,0 +1,18 @@
+$color-default: #04494f;
+$color-secondary: #04464ecc;
+$color-tertiary: #04474e40;
+$color-neutral: #fff;
+$color-accent1: #f53d46;
+$color-accent2: #3a0c4f;
+$font-M: 1.25rem;
+$font-L: 1.75rem;
+$delay: 150ms;
+$border-radius: 0.25rem;
+$weight-default: 500;
+$weight-bold: 700;
+$gridContent: (
+  status "STATUS: " 1,
+  date "DELIVERY DAY: " 2,
+  vendor "SUPPLIER: " 3,
+  price "PRICE: " 4
+);

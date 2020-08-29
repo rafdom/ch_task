@@ -1,0 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=Signika:wght@400;500;600;700&display=swap");
+
+.home-container {
+  background-color: #d9dfe3;
+  width: 100vw;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1.2fr 7.6fr 1.2fr;
+  grid-template-rows: minmax(3.5rem, 0.7fr) 1fr minmax(5rem, 0.7fr) 7.5fr;
+  grid-template-areas:
+    "logo logo logo"
+    "... filter ..."
+    "... header ..."
+    "... columns ...";
+  font-family: "Signika", sans-serif;
+  overflow-y: scroll;
+
+  @media only screen and (max-width: 800px) {
+    grid-template-areas:
+      "logo logo logo"
+      "... filter ..."
+      "... columns ..."
+      "... columns ...";
+  }
+}

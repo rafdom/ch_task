@@ -1,0 +1,169 @@
+@import "../mixins/gridAreaAndPositions.scss";
+@import "../mixins/dropShadow.scss";
+@import "../constants/variables.scss";
+
+.columns-container {
+  grid-area: columns;
+  display: grid;
+  animation: maxOpacity 800ms forwards ease-out;
+  max-height: 2.5rem;
+
+  &:after {
+    content: "";
+    height: 3rem;
+  }
+
+  @media only screen and (max-width: 800px) {
+    gap: 1rem;
+  }
+
+  .columns-table {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    text-align: center;
+    justify-items: center;
+    padding: 1rem 0;
+    color: $color-secondary;
+    border-bottom: 1px solid $color-tertiary;
+    animation: revertHighLight $delay forwards ease-out;
+    @include dropShadow(0px, 3px, 5px, 0px, #0000004d);
+
+    .delivered {
+      color: $color-accent1;
+    }
+
+    .paid {
+      color: $color-accent2;
+    }
+
+    .vendor-name :not(:first-child) {
+      margin: 0 0.25rem;
+      color: $color-neutral;
+      padding: 0 0.3rem;
+      border-radius: $border-radius;
+
+      &:nth-child(2) {
+        background-color: $color-accent2;
+        text-transform: uppercase;
+      }
+
+      &:nth-child(3) {
+        background-color: $color-accent1;
+      }
+    }
+
+    &:last-child {
+      border: none;
+    }
+
+    &:hover {
+      animation: highLight $delay forwards ease-in;
+    }
+
+    @media only screen and (max-width: 800px) {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      grid-template-areas:
+        "vendor date"
+        "status price";
+      gap: 2rem 0.5rem;
+      justify-items: left;
+      text-align: left;
+      padding: 2rem 2rem 0.5rem;
+
+      @each $area, $content, $position in $gridContent {
+        > :nth-child(#{$position}) {
+          grid-area: $area;
+
+          &::before {
+            content: $content;
+            color: $color-default;
+            font-weight: $weight-bold;
+          }
+        }
+      }
+
+      &:hover {
+        animation: highLightMobile $delay forwards ease-in;
+      }
+    }
+  }
+}
+
+@keyframes maxOpacity {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes highLight {
+  from {
+    color: $color-secondary;
+    background: $color-neutral;
+    font-weight: $weight-default;
+  }
+  to {
+    color: $color-default;
+    background-color: $color-tertiary;
+    font-weight: $weight-bold;
+  }
+}
+
+@keyframes highLightMobile {
+  from {
+    color: $color-secondary;
+    background: $color-neutral;
+    font-weight: $weight-default;
+  }
+  to {
+    color: $color-neutral;
+    background-color: $color-tertiary;
+    font-weight: $weight-bold;
+  }
+}
+
+@keyframes revertHighLight {
+  from {
+    color: $color-default;
+    background-color: $color-tertiary;
+    font-weight: $weight-bold;
+  }
+  to {
+    color: $color-secondary;
+    background: $color-neutral;
+    font-weight: $weight-default;
+  }
+}
+
+.columns-loading {
+  @include gridAreaAndPositions(columns, center, center);
+  margin: 0 auto;
+  width: 22.5rem;
+  height: 22.5rem;
+  background-color: transparent;
+  border: none;
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(0);
+  animation: loading $delay + 550ms linear infinite;
+}
+
+@keyframes loading {
+  from {
+    opacity: 0;
+    background-color: transparent;
+    transform: scale(0);
+  }
+  to {
+    opacity: 1;
+    background-color: #04494fb2;
+    transform: scale(0.8);
+  }
+}
+
+.columns-error {
+  @include gridAreaAndPositions(columns, center, center);
+}
