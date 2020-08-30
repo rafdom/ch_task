@@ -95,6 +95,15 @@
 
     .reset-filter {
       justify-self: center;
+      
+            > :nth-child(1) {
+        position: relative;
+        top: 2.5px;
+        right: 8px;
+      }
+      > :nth-child(2) {
+        position: relative;
+      }
     }
   }
 }
